@@ -36,10 +36,8 @@ class GenerationPipeline:
         # Initialize background removal module
         if self.settings.background_removal.model_id == "PramaLLC/BEN2":
             self.rmbg = BEN2BackgroundRemovalService(settings.background_removal)
-        elif self.settings.background_removal.model_id == "michealthegandalf11/alpha-extract":
-            self.rmbg = RMBG2BackgroundRemovalService(settings.background_removal)
         else:
-            raise ValueError(f"Unsupported background removal model: {self.settings.background_removal.model_id}")
+            self.rmbg = RMBG2BackgroundRemovalService(settings.background_removal)
 
         # Initialize prompting libraries for both modes
         self.prompting_library_base = PromptingLibrary.from_file(settings.qwen.prompt_path_base)
